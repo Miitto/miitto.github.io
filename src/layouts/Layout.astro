@@ -14,25 +14,22 @@ const currentPath = Astro.url.pathname;
 
 <script is:inline>
     const isBrowser = typeof localStorage !== "undefined";
+    const query = window.matchMedia("(prefers-color-scheme: dark)");
     const getThemePreference = () => {
         if (isBrowser && localStorage.getItem("theme")) {
             return localStorage.getItem("theme");
         }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        return query.matches ? "dark" : "light";
     };
-    const isDark = getThemePreference() === "dark";
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
 
-    if (isBrowser) {
-        const observer = new MutationObserver(() => {
-            const isDark = document.documentElement.classList.contains("dark");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
-        });
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["class"],
-        });
+    function updateTheme() {
+        const isDark = getThemePreference() === "dark";
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
     }
+
+    updateTheme();
+
+    query.addEventListener("change", updateTheme);
 </script>
 
 <html lang="en">

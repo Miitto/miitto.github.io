@@ -31,8 +31,8 @@ import Tech from "@/components/Tech.astro";
             </p>
             <p>
                 I did an MComp in Computer Science and for my last year specialized in Game Engineering after I discovered my passion for graphics programming. I started by exploring <strong
-                    >Voxels</strong
-                > with <strong>OpenGL</strong> before moving onto more general rendering and <strong>Vulkan</strong>. I'm especially interested in how to best leverage the API to achieve the best
+                    >voxels</strong
+                > using <strong>OpenGL</strong> before moving onto more general rendering and <strong>Vulkan</strong>. I'm especially interested in how to best leverage the API to achieve the best
                 performance.
             </p>
         </div>
@@ -80,7 +80,7 @@ import Tech from "@/components/Tech.astro";
                         link="https://saves.miitto.dev"
                         repo="https://github.com/Miitto/Save-Manager"
                         ><Tech n="Dioxus" img="https://avatars.githubusercontent.com/u/79236386?s=200&v=4" />
-                        <Tech n="Rust" img="https://svgl.app/library/rust_dark.svg" />
+                        <Tech n="Rust" img="https://svgl.app/library/rust.svg" class="dark:invert" />
                         <Tech n="SQLite" img="https://svgl.app/library/sqlite.svg" />
                         <Tech n="Tailwind" img="https://svgl.app/library/tailwindcss.svg" />
                     </Project>
@@ -118,6 +118,21 @@ import Tech from "@/components/Tech.astro";
                 </div>
             </div>
         </div>
+    </div>
+    <div class="w-full max-w-7xl px-6">
+        <h2 class="mb-4 text-4xl">Qualifications</h2>
+        <Card>
+            <CardHeader>
+                <CardTitle>Master of Computing</CardTitle>
+                <CardDescription>First Class Honours</CardDescription>
+                <CardDescription>Computer Science (Game Engineering)</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p class="text-muted-foreground">Newcastle University</p>
+                <p class="text-muted-foreground">2022 - 2026</p>
+            </CardContent>
+            <CardFooter>Link Available upon request</CardFooter>
+        </Card>
     </div>
     <footer slot="footer" class="text-muted-foreground mt-8 px-2 py-4 text-center">Created by me | Last updated 28th June 2026</footer>
 </Layout>
