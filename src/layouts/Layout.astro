@@ -4,9 +4,12 @@ import { Navbar } from "@/components/Navbar";
 
 type Props = {
     title?: string;
+    description: string;
+    keywords?: string;
 };
 
-const { title } = Astro.props;
+const { title, description, keywords } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <script is:inline>
@@ -39,6 +42,18 @@ const { title } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <meta name="author" content="Miitto" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="og:title" content={title ? `${title} | Miitto.dev` : "Miitto.dev"} />
+        <meta name="og:description" content={description} />
+        <meta name="og:url" content={`https://miitto.dev${currentPath}`} />
+        <meta name="og:site_name" content="Miitto.dev" />
+        <meta name="og:type" content="website" />
+        {keywords && <meta name="keywords" content={keywords} />}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title ? `${title} | Miitto.dev` : "Miitto.dev"} />
+        <meta name="twitter:description" content={description} />
         <title>
             {title && `${title} | `}
             Miitto.dev
