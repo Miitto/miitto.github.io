@@ -1,0 +1,123 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
+import { Separator } from "@/components/ui/separator";
+import Bistro from "@assets/Bistro.webp";
+import Skinning from "@assets/Skinning.webp";
+import { SquareArrowOutUpRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+import Project from "@/components/Project.astro";
+import Tech from "@/components/Tech.astro";
+---
+
+<Layout>
+    <div class="grid max-w-7xl grid-cols-2 gap-8 px-6">
+        <div class="col-span-full flex flex-col gap-y-2">
+            <!-- -left to bring it inline with the next line of text -->
+            <h1 class="relative -left-1.5 max-w-fit text-8xl">Hi!</h1>
+            <h2 class="max-w-fit text-4xl">I'm Will Bickerton.</h2>
+        </div>
+        <div class="text-muted-foreground [&>p>strong]:text-foreground flex flex-col gap-y-4 text-xl [&>p>strong]:font-semibold">
+            <p>
+                I'm a Computer Science graduate who is proficient in many areas from <strong>Fullstack</strong> development to <strong>low level graphics</strong> work with <strong>Vulkan</strong>.
+            </p>
+            <p>
+                My goto technologies are <strong>Svelte</strong> for web development and <strong><a class="underline" href="https://dioxuslabs.com/">Dioxus</a></strong> for multi-platform GUI development.
+                I also have experience with
+                <strong> React</strong>, <strong>Django</strong> and <strong>Astro</strong>.
+            </p>
+            <p>
+                I did an MComp in Computer Science and for my last year specialized in Game Engineering after I discovered my passion for graphics programming. I started by exploring <strong
+                    >Voxels</strong
+                > with <strong>OpenGL</strong> before moving onto more general rendering and <strong>Vulkan</strong>. I'm especially interested in how to best leverage the API to achieve the best
+                performance.
+            </p>
+        </div>
+        <div class="grid h-fit grid-cols-1 flex-wrap justify-center gap-4 xl:grid-cols-2">
+            <Card className="relative mx-auto hidden w-full max-w-sm min-w-65 pt-0 xl:flex">
+                <Image src={Skinning} alt="Amazon Lumberyard Bistro scene rendered with my Vulkan renderer" class="relative z-20 aspect-video w-full object-cover" loading="eager" />
+                <CardHeader>
+                    <CardAction>
+                        <Badge variant="secondary">OpenGL</Badge>
+                    </CardAction>
+                    <CardTitle>Compute Skinning</CardTitle>
+                    <CardDescription className="col-span-full"> This project uses a compute shader to perform skinning on the GPU, rendering over 100 animated characters at 120FPS. </CardDescription>
+                </CardHeader>
+                <CardFooter>
+                    <Link href="https://github.com/Miitto/CSC8502-Coursework" className="w-full">Repository <SquareArrowOutUpRight /></Link>
+                </CardFooter>
+            </Card>
+            <Card className="relative mx-auto w-full max-w-sm min-w-65 pt-0">
+                <Image src={Bistro} alt="Amazon Lumberyard Bistro scene rendered with my Vulkan renderer" class="relative z-20 aspect-video w-full object-cover" loading="eager" />
+                <CardHeader>
+                    <CardAction>
+                        <Badge variant="secondary">Vulkan</Badge>
+                    </CardAction>
+                    <CardTitle>Async Compute</CardTitle>
+                    <CardDescription className="col-span-full"> The Amazon Lumberyard Bistro scene rendered with my Vulkan renderer, using multi-draw and effects such as async SSAO. </CardDescription>
+                </CardHeader>
+                <CardFooter>
+                    <Link href="https://github.com/Miitto/Keptech" className="w-full">Repository <SquareArrowOutUpRight /></Link>
+                </CardFooter>
+            </Card>
+        </div>
+    </div>
+
+    <div class="w-full max-w-7xl px-6">
+        <h2 class="text-4xl">Projects</h2>
+
+        <div class="flex flex-col items-center">
+            <div class="mt-4 grid max-w-lg grid-flow-row-dense grid-cols-1 gap-x-8 gap-y-4 sm:max-w-full sm:grid-cols-2 md:lg:grid-cols-4">
+                <h3 class="mt-4 text-2xl sm:col-span-2">Web</h3>
+                <div class="grid grid-cols-subgrid gap-4 sm:col-[1/span_2]">
+                    <Project
+                        title="Save Manager"
+                        description="A save sharing and versioning tool for various games. The desktop application allows users to manage their saves without having to manually manage the files."
+                        badge="Fullstack & Desktop"
+                        link="https://saves.miitto.dev"
+                        repo="https://github.com/Miitto/Save-Manager"
+                        ><Tech n="Dioxus" img="https://avatars.githubusercontent.com/u/79236386?s=200&v=4" />
+                        <Tech n="Rust" img="https://svgl.app/library/rust_dark.svg" />
+                        <Tech n="SQLite" img="https://svgl.app/library/sqlite.svg" />
+                        <Tech n="Tailwind" img="https://svgl.app/library/tailwindcss.svg" />
+                    </Project>
+                    <Project
+                        title="Weather Watch"
+                        description="A university group project designed to help raise awareness of climate change. It features a live air quality map, a social media like post system. I worked on the quiz system
+                    which allows users to both create and take quizzes."
+                        badge="Fullstack"
+                        repo="https://github.com/Miitto/Weather-Watch">
+                        <Tech n="SvelteKit" img="https://svgl.app/library/svelte.svg" />
+                        <Tech n="Typescript" img="https://svgl.app/library/typescript.svg" />
+                        <Tech n="Supabase" img="https://svgl.app/library/supabase.svg" />
+                        <Tech n="Tailwind" img="https://svgl.app/library/tailwindcss.svg" />
+                        <Tech n="Docker" img="https://svgl.app/library/docker.svg" />
+                    </Project>
+                </div>
+                <h3 class="mt-4 h-fit shrink text-2xl sm:col-span-2">Games and Graphics</h3>
+                <div class="grid grid-cols-subgrid gap-4 sm:col-span-2">
+                    <Project
+                        title="Vulkan Renderer"
+                        description="A Vulkan renderer that implements a deferred rendering pipeline with multi-draw, PBR materials, omnidirectional shadow maps, async SSAO and bloom. It is capable of rendering the Amazon Lumberyard Bistro scene at 80FPS."
+                        badge="Vulkan"
+                        repo="https://github.com/Miitto/Keptech">
+                        <Tech n="C++" img="https://svgl.app/library/c-plusplus.svg" />
+                        <Tech n="Vulkan" img="https://cdn.brandfetch.io/idZ6IP9Aui/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1781984911937" />
+                    </Project>
+                    <Project
+                        title="Compute Skinning"
+                        description="My graphics coursework project which implements a compute shader to perform skinning on the GPU. It is capable of rendering over 100 animated characters at 120FPS. It also uses multi-draw and bindless textures to reduce the API overhead."
+                        badge="OpenGL"
+                        repo="https://github.com/Miitto/CSC8502-Coursework">
+                        <Tech n="C++" img="https://svgl.app/library/c-plusplus.svg" />
+                        <Tech n="OpenGL" img="https://cdn.brandfetch.io/idi0TMukEd/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1776263619987" />
+                    </Project>
+                </div>
+            </div>
+        </div>
+        <footer slot="footer" class="text-muted-foreground mt-8 px-2 py-4 text-center">Created by me | Last updated 28th June 2026</footer>
+    </div>
+</Layout>

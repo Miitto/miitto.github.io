@@ -1,23 +1,57 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "@styles/tailwind.css";
+import { Navbar } from "@/components/Navbar";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+type Props = {
+    title?: string;
+};
+
+const { title } = Astro.props;
+---
+
+<script is:inline>
+    const isBrowser = typeof localStorage !== "undefined";
+    const getThemePreference = () => {
+        if (isBrowser && localStorage.getItem("theme")) {
+            return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    };
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+    if (isBrowser) {
+        const observer = new MutationObserver(() => {
+            const isDark = document.documentElement.classList.contains("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
+</script>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>
+            {title && `${title} | `}
+            Miitto.dev
+        </title>
+    </head>
+    <body class="flex flex-col">
+        <Navbar client:load />
+        <div class="grid-bg flex min-h-max shrink-0 grow flex-col">
+            <main class="flex min-h-max grow flex-col items-center gap-y-16 pt-16">
+                <slot />
+            </main>
+
+            <slot name="footer" />
+        </div>
+    </body>
+</html>

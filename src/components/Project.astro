@@ -1,0 +1,46 @@
+---
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
+import Bistro from "@assets/Bistro.webp";
+import Skinning from "@assets/Skinning.webp";
+import { SquareArrowOutUpRight } from "@lucide/astro";
+
+type Props = {
+    title: string;
+    description: string;
+    badge?: string;
+    link?: string;
+    repo: string;
+};
+
+const { title, description, badge, link, repo } = Astro.props;
+---
+
+<Card className="h-full max-w-lg">
+    <CardHeader>
+        {
+            badge && (
+                <CardAction>
+                    <Badge variant="secondary">{badge}</Badge>
+                </CardAction>
+            )
+        }
+        <CardTitle>{title}</CardTitle>
+        <CardDescription className="col-span-full">{description}</CardDescription>
+    </CardHeader>
+    <CardContent className="flex grow flex-row flex-wrap content-center justify-center gap-2">
+        <slot />
+    </CardContent>
+    <CardFooter className="flex flex-col gap-2">
+        {
+            link && (
+                <Link href={link} className="w-full">
+                    Visit <SquareArrowOutUpRight />
+                </Link>
+            )
+        }
+        <Link href={repo} className="w-full">Repository <SquareArrowOutUpRight /></Link>
+    </CardFooter>
+</Card>

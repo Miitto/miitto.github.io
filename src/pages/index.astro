@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
+import Bistro from "@assets/Bistro.webp";
+import Skinning from "@assets/Skinning.webp";
+import { SquareArrowOutUpRight } from "@lucide/astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+    <div class="max-w-7xl px-6">
+        <h1 class="text-4xl">Welcome to Miitto.dev</h1>
+
+        <ul class="mt-8 flex flex-col gap-y-8">
+            <li>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Save Manager</CardTitle>
+                        <CardDescription>A save sharing and versioning tool for various games.</CardDescription>
+                    </CardHeader>
+                    <CardFooter>
+                        <Link href="https://saves.miitto.dev" className="w-full">Visit <SquareArrowOutUpRight /></Link>
+                    </CardFooter>
+                </Card>
+            </li>
+        </ul>
+    </div>
 </Layout>

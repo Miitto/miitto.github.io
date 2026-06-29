@@ -1,0 +1,17 @@
+---
+import { Tech as T } from "@/components/Tech";
+
+type Props = {
+    n: string;
+    img: string;
+};
+
+const { n, img } = Astro.props;
+---
+
+<div class="group relative flex w-fit flex-row items-center justify-center">
+    <span class="border-border hover:bg-muted rounded border bg-white/5 px-4 py-2">
+        <img class="h-6 w-6" src={img} alt={`${n} logo`} />
+    </span>
+    <span class="border-border bg-muted absolute -top-full left-1/2 hidden w-fit -translate-x-1/2 transform rounded border px-4 py-2 text-center text-nowrap group-hover:block">{n}</span>
+</div>
